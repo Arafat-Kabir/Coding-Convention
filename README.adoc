@@ -1,0 +1,33 @@
+= Coding Conventions
+
+This repository contains a set of conventions to follow while writing code in 
+some (programming) language.
+This conventions are developed based on some existing conventions
+and tweaked a bit for the author's taste.
+The rationale behind each convention is also explained wherever it's not
+obvious.
+
+Another reason for maintaing a repository for these conventions is to save time.
+The author has a tendency to find perfect conventions at the start of each project.
+As a result, he wastes days coming up with the conventions.
+While the project progresses, the conventions become too restrictive or confusing 
+for the new part of the project.
+As a result, he updates the conventions to fit his needs as the project progresses.
+But, he is too lazy to update his old parts of the project, which are still using the obsolete conventions.
+Thus, he fails to effectively reap the benefit of have a convention in the first place.
+With a centralized convention repository, he can update the conventions whenever necessary
+and maintain it in the long run.
+This saves the knowledge and experience, as well as, the start-up time of a new project.
+
+== Design Principles
+
+These are the design principles for the conventions,
+
+* Naming style should tell the type of the object.
+* Delimeters like space, line-breaks, semicolong, etc. should be used consistently 
+  to convey the structure of the system (object, module, library, etc.) being written.
+* File organization and names should be consistent with the structure of the system.
+* Conventions should not be unnecessarily restrictive. If you cannot present a compelling
+  rationale, you don't need the convention, thus it is unnecessary.
+
+

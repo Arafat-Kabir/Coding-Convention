@@ -1,0 +1,54 @@
+= Verilog Coding Conventions
+
+== Naming Conventions
+
+* Module names are capitalized: AluSerial, OpMux, BusMux, etc.
+* Instance names are more descriptive (longer) and 
+  uses camel-case: bitSerAlu, operandMux, networkNode, etc. 
+* Each module has its own file, with the same name.
+* Function names uses came-case and a "_fn" suffix: fullAddSub_fn
+* Reusable functions has its own file. 
+  Name of the file is the name of the function with "_fn" suffix 
+  replaced with "_func": fullAddSub_func.v
+* Reusable parameter set has its own file. 
+  Name of the file is the name of the function/module with subfixes following subfixes:
+  ** "_<parameter usage>" : Briefly expresses the usage of those parameters.
+  ** "_param" : A constant suffix.
+  Example: fullAddSub_opcodes_param.v
+
+
+
+
+== Code Structure Conventions
+* A module containing several submodules declares separate wires 
+  to connect to each port of the submodules.
+  These wires have the same name as the submodule ports, but prefixed
+  with the name of the submodule instance.
+  Same conventions are applicable to their parameters.
+  Example:
+
+[source,verilog]
+----
+// Instantiating the AluSerial module
+localparam ALU_STREAM_WIDTH = 16;               // instance parameter with instance name as prefix
+
+wire [ALU_STREAM_WIDTH-1:0]  bitSerALU_x_streams;     // wires with instance name as prefix
+wire [ALU_STREAM_WIDTH-1:0]  bitSerALU_y_streams;
+wire                         bitSerALU_ce;
+wire [ALU_OP_WIDTH:0]        bitSerALU_opConfig;
+wire                         bitSerALU_opLoad;
+wire                         bitSerALU_reset;
+wire [ALU_STREAM_WIDTH-1:0]  bitSerALU_out_streams;
+
+AluSerial  #(.STREAM_WIDTH(ALU_STREAM_WIDTH))
+    bitSerALU(
+        .clk(clk),
+        .x_streams(bitSerALU_x_streams),
+        .y_streams(bitSerALU_y_streams),
+        .ce_alu(bitSerALU_ce),
+        .opConfig(bitSerALU_opConfig),
+        .opLoad(bitSerALU_opLoad),
+        .reset(bitSerALU_reset),
+        .out_streams(bitSerALU_out_streams)
+    );
+----
